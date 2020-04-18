@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TriggerTile : MonoBehaviour
 {
-    public TILE_COLOR StartColor = TILE_COLOR.BLUE;
+    public List<EffectOnDepress> DepressEffects;
 
     private int PlayersOnTile = 0;
 
@@ -19,12 +19,21 @@ public class TriggerTile : MonoBehaviour
     private float DEPRESS_HEIGHT = -0.1f;
     private float NORMAL_HEIGHT = 0f;
 
-    public enum TILE_COLOR {
-        BLUE,
-        GREEN,
-        YELLOW,
-        RED,
-        BLACK
+    public bool StatefulColor = false;
+    public Color UntouchedColor = Color.white;
+    public Color TriggeredColor = Color.white;
+
+    public Color DepressedColor = Color.white;
+    public Color UnpressedColor = Color.white;
+
+    public enum COLOR_STATE {
+        // 1 time use settings = priority
+        UNTOUCHED,
+        TRIGGERED,
+
+        // State based on if trigger is depressed
+        DEPRESSED,
+        UNPRESSED,
     }
 
 
@@ -34,7 +43,11 @@ public class TriggerTile : MonoBehaviour
         Tile = transform.Find("Tile").gameObject;
         TileColor = Tile.transform.Find("StateAffordance").GetComponent<SpriteRenderer>();
 
-        SetTileColor(StartColor);
+        if (StatefulColor) {
+            SetTileColor(UntouchedColor);
+        } else {
+            SetTileColor(UnpressedColor);
+        }
     }
 
     // Update is called once per frame
@@ -44,26 +57,8 @@ public class TriggerTile : MonoBehaviour
         ReleaseAnimate();
     }
 
-    public void SetTileColor(TILE_COLOR color) {
-        switch (color) {
-            case TILE_COLOR.BLUE:
-                TileColor.color = Color.blue;
-                break;
-            case TILE_COLOR.GREEN:
-                TileColor.color = Color.green;
-                break;
-            case TILE_COLOR.YELLOW:
-                TileColor.color = Color.yellow;
-                break;
-            case TILE_COLOR.RED:
-                TileColor.color = Color.red;
-                break;
-            case TILE_COLOR.BLACK:
-                TileColor.color = Color.black;
-                break;
-            default:
-                break;
-        }
+    public void SetTileColor(Color color) {
+        TileColor.color = color;
     }
 
     private void OnTriggerEnter(Collider other) {
@@ -73,6 +68,9 @@ public class TriggerTile : MonoBehaviour
             DepressAnimateTime = ANIMATION_DURATION;
             SetDepressAnimationTime();
             OnDepress();
+            foreach(EffectOnDepress effect in DepressEffects) {
+                effect.Trigger();
+            }
         }
     }
 
@@ -113,35 +111,43 @@ public class TriggerTile : MonoBehaviour
     }
 
     public virtual void DepressAnimate() {
-        Debug.Log("DepressAnimate " + DepressAnimateTime);
         // hack so that we can easily know when to snap to 0
         if (DepressAnimateTime < 0) {
             if (DepressAnimateTime > -1f * EXACT_ANIMATION_OFFSET) {
                 DepressAnimateTime -= Time.deltaTime;
-                Tile.transform.position = new Vector3(Tile.transform.position.x, LerpTimeToPosition(true, DepressAnimateTime + EXACT_ANIMATION_OFFSET));
+                Tile.transform.localPosition = new Vector3(Tile.transform.localPosition.x, LerpTimeToPosition(true, DepressAnimateTime + EXACT_ANIMATION_OFFSET));
             } else {
                 DepressAnimateTime = 0;
-                Tile.transform.position = new Vector3(Tile.transform.position.x, DEPRESS_HEIGHT);
+                Tile.transform.localPosition = new Vector3(Tile.transform.localPosition.x, DEPRESS_HEIGHT);
             }
         }
     }
 
     public virtual void ReleaseAnimate() {
-        Debug.Log("ReleaseAnimate " + ReleaseAnimateTime);
         if (ReleaseAnimateTime < 0) {
             if (ReleaseAnimateTime > -1f * EXACT_ANIMATION_OFFSET) {
                 ReleaseAnimateTime -= Time.deltaTime;
-                Tile.transform.position = new Vector3(Tile.transform.position.x, LerpTimeToPosition(false, ReleaseAnimateTime + EXACT_ANIMATION_OFFSET));
+                Tile.transform.localPosition = new Vector3(Tile.transform.localPosition.x, LerpTimeToPosition(false, ReleaseAnimateTime + EXACT_ANIMATION_OFFSET));
             } else {
                 ReleaseAnimateTime = 0;
-                Tile.transform.position = new Vector3(Tile.transform.position.x, NORMAL_HEIGHT);
+                Tile.transform.localPosition = new Vector3(Tile.transform.localPosition.x, NORMAL_HEIGHT);
             }
         }
     }
 
     public virtual void OnStayDepress() { }
 
-    public virtual void OnDepress() { SetTileColor(TILE_COLOR.GREEN); }
+    public virtual void OnDepress() {
+        if (StatefulColor) {
+            SetTileColor(TriggeredColor);
+        } else {
+            SetTileColor(DepressedColor);
+        }
+    }
 
-    public virtual void OnRelease() { SetTileColor(TILE_COLOR.BLUE); }
+    public virtual void OnRelease() {
+        if (!StatefulColor) {
+            SetTileColor(UnpressedColor);
+        }
+    }
 }
