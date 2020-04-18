@@ -17,10 +17,8 @@ public class EffectOnDepress : MonoBehaviour
 
     public virtual void Update() {
         if (IsAnimatingBeforeTrigger && !IsTriggerFinished) {
-            Debug.Log("Here!");
             DelayTime -= Time.deltaTime;
             if (DelayTime <= 0) {
-                Debug.Log("Calling Trigger");
                 TriggerEffect();
                 IsTriggerFinished = true;
                 IsAnimatingBeforeTrigger = false;
@@ -31,16 +29,13 @@ public class EffectOnDepress : MonoBehaviour
     }
 
     public void Trigger() {
-        Debug.Log("Triggered On Depress Effect");
         IsAnimatingBeforeTrigger = true;
         DelayTime = EffectDelay;
     }
 
     public virtual void AnimatingBeforeTrigger() {
-        Debug.Log("Animating Before Trigger");
     }
 
     public virtual void TriggerEffect() {
-        Debug.Log("Super Trigger");
     }
 }

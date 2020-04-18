@@ -35,7 +35,6 @@ public class EffectOnDepressOpenDoor : EffectOnDepress
     }
 
     public override void TriggerEffect() {
-        Debug.Log("TriggerEffect");
         IsTriggered = true;
         AnimationTime = AnimationDuration;
     }

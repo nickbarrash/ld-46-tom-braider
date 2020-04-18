@@ -5,6 +5,7 @@ using UnityEngine;
 public class TriggerTile : MonoBehaviour
 {
     public List<EffectOnDepress> DepressEffects;
+    public List<EffectOnStayDepress> StayDepressEffects;
 
     private int PlayersOnTile = 0;
 
@@ -71,6 +72,9 @@ public class TriggerTile : MonoBehaviour
             foreach(EffectOnDepress effect in DepressEffects) {
                 effect.Trigger();
             }
+            foreach(EffectOnStayDepress effect in StayDepressEffects) {
+                effect.StartEffect();
+            }
         }
     }
 
@@ -81,6 +85,9 @@ public class TriggerTile : MonoBehaviour
             ReleaseAnimateTime = ANIMATION_DURATION;
             SetReleaseAnimationTime();
             OnRelease();
+            foreach (EffectOnStayDepress effect in StayDepressEffects) {
+                effect.StopEffect();
+            }
         }
     }
 
@@ -134,8 +141,6 @@ public class TriggerTile : MonoBehaviour
             }
         }
     }
-
-    public virtual void OnStayDepress() { }
 
     public virtual void OnDepress() {
         if (StatefulColor) {
