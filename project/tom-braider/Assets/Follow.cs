@@ -17,10 +17,6 @@ public class Follow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((Target.transform.position - transform.position).magnitude > GameConstants.PLAYER_FOLLOW_DISTANCE) {
-            NavAgent.SetDestination(Target.transform.position);
-        } else {
-            NavAgent.SetDestination(transform.position);
-        }
+        NavAgent.SetDestination(Target.transform.position);
     }
 }
