@@ -73,7 +73,7 @@ public class TriggerTile : MonoBehaviour
                 effect.Trigger();
             }
             foreach(EffectOnStayDepress effect in StayDepressEffects) {
-                effect.StartEffect();
+                effect.AddDepress();
             }
         }
     }
@@ -86,7 +86,7 @@ public class TriggerTile : MonoBehaviour
             SetReleaseAnimationTime();
             OnRelease();
             foreach (EffectOnStayDepress effect in StayDepressEffects) {
-                effect.StopEffect();
+                effect.RemoveDepress();
             }
         }
     }

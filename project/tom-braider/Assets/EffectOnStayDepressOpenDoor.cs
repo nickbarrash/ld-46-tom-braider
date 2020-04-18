@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EffectOnDepressOpenDoor : EffectOnDepress
+public class EffectOnStayDepressOpenDoor : EffectOnStayDepress
 {
     public float AnimationDuration = 1.0f;
     private bool IsTriggered = false;
@@ -14,7 +14,7 @@ public class EffectOnDepressOpenDoor : EffectOnDepress
     // ASSUME WE ONLY SCALE BY X!!!!
     private void Start() {
         Door = transform.Find("Door").gameObject;
-        
+
         if (Door.transform.localScale.z > 1) {
             Debug.Log("Warning, you should only scale doors on X axis");
         }
@@ -22,8 +22,7 @@ public class EffectOnDepressOpenDoor : EffectOnDepress
         ScaleX = Door.transform.localScale.x;
     }
 
-    public override void Update() {
-        base.Update();
+    public void Update() {
         if (IsTriggered && AnimationTime > 0) {
             AnimationTime -= Time.deltaTime;
             float AnimationLerp = Mathf.InverseLerp(0f, AnimationDuration, AnimationTime);
@@ -32,7 +31,7 @@ public class EffectOnDepressOpenDoor : EffectOnDepress
         }
     }
 
-    public override void TriggerEffect() {
+    public override void StartEffect() {
         IsTriggered = true;
         AnimationTime = AnimationDuration;
     }

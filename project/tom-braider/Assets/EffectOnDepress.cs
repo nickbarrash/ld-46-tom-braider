@@ -37,5 +37,6 @@ public class EffectOnDepress : MonoBehaviour
     }
 
     public virtual void TriggerEffect() {
+
     }
 }
