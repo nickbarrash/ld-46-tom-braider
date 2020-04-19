@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DamageInterval: 0.1
-  Damage: 0.2
+  Damage: 0.1
   DamageType: Spike
 --- !u!1 &3213737236478525489
 GameObject:
@@ -284,7 +284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DamageInterval: 0.1
-  Damage: 0.2
+  Damage: 0.1
   DamageType: Spike
 --- !u!1 &3213737236600867806
 GameObject:
@@ -393,7 +393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DamageInterval: 0.1
-  Damage: 0.2
+  Damage: 0.1
   DamageType: Spike
 --- !u!1 &3213737236743190798
 GameObject:
@@ -502,7 +502,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DamageInterval: 0.1
-  Damage: 0.2
+  Damage: 0.1
   DamageType: Spike
 --- !u!1 &3213737237288707653
 GameObject:
@@ -611,5 +611,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DamageInterval: 0.1
-  Damage: 0.2
+  Damage: 0.1
   DamageType: Spike
