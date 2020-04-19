@@ -32,7 +32,9 @@ public class EffectOnStayDepressOpenDoor : EffectOnStayDepress
     }
 
     public override void StartEffect() {
-        IsTriggered = true;
-        AnimationTime = AnimationDuration;
+        if (!IsTriggered) {
+            IsTriggered = true;
+            AnimationTime = AnimationDuration;
+        }
     }
 }

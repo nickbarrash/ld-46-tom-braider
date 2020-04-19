@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BackstoryController : MonoBehaviour {
     public List<GameObject> StoryText;
@@ -105,6 +106,7 @@ public class BackstoryController : MonoBehaviour {
     }
 
     public void PlayGame() {
-        manager.SwitchToPanel(2);
+        //manager.SwitchToPanel(2);
+        SceneManager.LoadScene("GameScene");
     }
 }
