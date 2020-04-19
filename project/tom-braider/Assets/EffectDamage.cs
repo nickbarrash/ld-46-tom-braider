@@ -18,10 +18,19 @@ public class EffectDamage : MonoBehaviour {
     }
 
     private void OnTriggerStay(Collider other) {
-        DamageTime -= Time.deltaTime;
-        if (DamageTime <= 0) {
-            DamageTime = DamageInterval - DamageTime;
-            Debug.Log(DamageType + " Damage for " + other.gameObject.name);
+        if (GameConstants.IsCharacterLayer(other.gameObject.layer)) {
+            DamageTime -= Time.deltaTime;
+            if (DamageTime <= 0) {
+                DamageTime = DamageInterval - DamageTime;
+                Debug.Log(DamageType + " Damage for " + other.gameObject.name);
+            }
+        }
+    }
+
+    private void OnCollisionStay(Collision collision) {
+        //Debug.Log(collision.collider.gameObject.tag + " " + collision.collider.gameObject.name);
+        if (GameConstants.IsCharacterLayer(collision.collider.gameObject.layer)) {
+            Debug.Log(DamageType + " Damage for " + collision.collider.gameObject.name);
         }
     }
 }
