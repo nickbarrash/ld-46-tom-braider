@@ -12,6 +12,7 @@ public class Follow : MonoBehaviour
     [HideInInspector]
     public bool IsFollowing, IsFlying, IsGrabbingTreasure, IsEndGame;
 
+    public float FollowOffThreshold = 2.0f;
     public float FlyingNavmeshVeloTreshold = 0.1f;
 
     // Just enough so we dont' turn nav back on too quickly
@@ -30,19 +31,31 @@ public class Follow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!IsGrabbingTreasure && Input.GetKeyDown(KeyCode.Space)) {
+        //FollowOriginal();
+        FollowNew();
+    }
+
+    public void FollowNew() {
+        if (!IsGrabbingTreasure && !IsEndGame && Input.GetKeyDown(KeyCode.Space)) {
             IsFollowing = !IsFollowing;
+            if (!IsFollowing) {
+                NavAgent.enabled = false;
+            }else {
+                NavAgent.enabled = true;
+            }
         }
 
-        if (NavAgent.isActiveAndEnabled) {
-            if (IsEndGame) {
+        if (IsEndGame) {
+            if (NavAgent.isActiveAndEnabled) {
                 NavAgent.SetDestination(EndGameTarget.transform.position);
-            } else if (IsGrabbingTreasure) {
+            }
+        } else if (IsGrabbingTreasure) {
+            if (NavAgent.isActiveAndEnabled) {
                 NavAgent.SetDestination(Treasure.transform.position);
-            } else if (IsFollowing) {
+            }
+        } else {
+            if (IsFollowing) {
                 NavAgent.SetDestination(FollowTarget.transform.position);
-            } else {
-                NavAgent.SetDestination(transform.position);
             }
         }
 
@@ -57,6 +70,42 @@ public class Follow : MonoBehaviour
         }
     }
 
+    public void FollowOriginal() {
+        if (!IsGrabbingTreasure && !IsEndGame && Input.GetKeyDown(KeyCode.Space)) {
+            IsFollowing = !IsFollowing;
+        }
+
+        if (NavAgent.isActiveAndEnabled) {
+            if (IsEndGame) {
+                NavAgent.SetDestination(EndGameTarget.transform.position);
+            } else if (IsGrabbingTreasure) {
+                NavAgent.SetDestination(Treasure.transform.position);
+            } else {
+                if (NavAgent.isActiveAndEnabled) {
+                    if (IsFollowing) {
+                        NavAgent.SetDestination(FollowTarget.transform.position);
+                    } else {
+                        NavAgent.SetDestination(transform.position);
+                    }
+                }
+            }
+        }
+
+        if (IsFlying == true) {
+            if (FlyingTimer <= 0 && GetComponent<Rigidbody>().velocity.magnitude < FlyingNavmeshVeloTreshold) {
+                IsGrabbingTreasure = true;
+                NavAgent.enabled = true;
+                Debug.Log("NavAgent Back on!");
+                IsFlying = false;
+            }
+            FlyingTimer -= Time.deltaTime;
+        }
+    }
+
+    public bool IsCloseToPlayer() {
+        return (transform.position - FollowTarget.transform.position).magnitude < FollowOffThreshold;
+    }
+
     public void Fly() {
         IsFlying = true;
         FlyingTimer = FlyingDuration;
@@ -68,6 +117,7 @@ public class Follow : MonoBehaviour
     }
 
     public void EndGame() {
+        NavAgent.enabled = true;
         IsEndGame = true;
     }
 }
