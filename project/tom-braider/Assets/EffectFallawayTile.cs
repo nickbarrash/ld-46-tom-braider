@@ -10,6 +10,8 @@ public class EffectFallawayTile : EffectOnStayDepress {
 
     int DepressTotalCount = 0;
 
+    public bool InstantFallaway = false;
+
     private void Start() {
         FallTile = GetComponent<TriggerTile>();
         DropFloor = GetComponent<EffectOnDepressDropFloor>();
@@ -18,9 +20,11 @@ public class EffectFallawayTile : EffectOnStayDepress {
     public override void AddDepress(Collider other) {
         DepressTotalCount++;
         if (DepressTotalCount == 1) {
+            Debug.Log("Depress 1");
             FallTile.SetTileColor(Color.yellow);
         }
-        if (DepressTotalCount >= 2) {
+        if (DepressTotalCount >= 2 || (InstantFallaway && DepressTotalCount >= 1)) {
+            Debug.Log("Depress 2");
             FallTile.TriggeredColor = Color.red;
             FallTile.SetTileColor(Color.red);
             DropFloor.TriggerEffect();

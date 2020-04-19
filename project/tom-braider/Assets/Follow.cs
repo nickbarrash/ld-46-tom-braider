@@ -5,11 +5,12 @@ using UnityEngine.AI;
 
 public class Follow : MonoBehaviour
 {
-    public GameObject Target;
+    public GameObject FollowTarget;
+    public GameObject EndGameTarget;
     private NavMeshAgent NavAgent;
 
     [HideInInspector]
-    public bool IsFollowing, IsFlying, IsGrabbingTreasure;
+    public bool IsFollowing, IsFlying, IsGrabbingTreasure, IsEndGame;
 
     public float FlyingNavmeshVeloTreshold = 0.1f;
 
@@ -34,10 +35,12 @@ public class Follow : MonoBehaviour
         }
 
         if (NavAgent.isActiveAndEnabled) {
-            if (IsGrabbingTreasure) {
+            if (IsEndGame) {
+                NavAgent.SetDestination(EndGameTarget.transform.position);
+            } else if (IsGrabbingTreasure) {
                 NavAgent.SetDestination(Treasure.transform.position);
             } else if (IsFollowing) {
-                NavAgent.SetDestination(Target.transform.position);
+                NavAgent.SetDestination(FollowTarget.transform.position);
             } else {
                 NavAgent.SetDestination(transform.position);
             }
@@ -62,5 +65,9 @@ public class Follow : MonoBehaviour
     public void GrabTreasure() {
         IsGrabbingTreasure = false;
         IsFollowing = true;
+    }
+
+    public void EndGame() {
+        IsEndGame = true;
     }
 }
