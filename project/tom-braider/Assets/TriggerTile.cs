@@ -86,7 +86,7 @@ public class TriggerTile : MonoBehaviour
             SetReleaseAnimationTime();
             OnRelease();
             foreach (EffectOnStayDepress effect in StayDepressEffects) {
-                effect.RemoveDepress();
+                effect.RemoveDepress(other);
             }
         }
     }

@@ -15,7 +15,7 @@ public class EffectOnStayDepress : MonoBehaviour
         }
     }
 
-    public virtual void RemoveDepress() {
+    public virtual void RemoveDepress(Collider other) {
         Debug.Log("Sub " + DepressCount);
         if (DepressCount-- == DepressThreshold) {
             StopEffect();

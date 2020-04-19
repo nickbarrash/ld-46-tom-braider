@@ -26,11 +26,6 @@ public class EffectFallawayTile : EffectOnStayDepress {
             DropFloor.TriggerEffect();
             other.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
 
-            //Follow Follower = other.gameObject.GetComponent<Follow>();
-            //if (Follower != null) {
-            //    Follower.IsFollowing = false;
-            //}
-
             NavMeshAgent Agent = other.gameObject.GetComponent<NavMeshAgent>();
             if (Agent != null) {
                 Agent.enabled = false;
