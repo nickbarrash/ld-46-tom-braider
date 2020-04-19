@@ -1571,7 +1571,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthAffordance: {fileID: 640789359}
-  Manager: {fileID: 999050617}
 --- !u!1 &1324928511
 GameObject:
   m_ObjectHideFlags: 0
@@ -2011,7 +2010,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthAffordance: {fileID: 27072645}
-  Manager: {fileID: 999050617}
 --- !u!1 &1542253965
 GameObject:
   m_ObjectHideFlags: 0
@@ -2792,6 +2790,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 3584245543321724334, guid: 1dfd11d17a26ef745909293fb9c3ba60,
+        type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4393213354119532329, guid: 1dfd11d17a26ef745909293fb9c3ba60,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -2956,6 +2959,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3584245543321724334, guid: 1dfd11d17a26ef745909293fb9c3ba60,
+        type: 3}
+      propertyPath: m_Value
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1dfd11d17a26ef745909293fb9c3ba60, type: 3}
