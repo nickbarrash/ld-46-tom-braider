@@ -6,9 +6,9 @@ using UnityEngine;
 public class EffectOnStayDepress : MonoBehaviour
 {
     public int DepressThreshold = 1;
-    private int DepressCount = 0;
+    protected int DepressCount = 0;
 
-    public virtual void AddDepress() {
+    public virtual void AddDepress(Collider other) {
         Debug.Log("Add " + DepressCount);
         if (++DepressCount == DepressThreshold) {
             StartEffect();

@@ -63,7 +63,7 @@ public class TriggerTile : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        Debug.Log("OnTriggerEnter");
+        //Debug.Log("OnTriggerEnter");
         PlayersOnTile += 1;
         if (PlayersOnTile == 1) {
             DepressAnimateTime = ANIMATION_DURATION;
@@ -73,13 +73,13 @@ public class TriggerTile : MonoBehaviour
                 effect.Trigger();
             }
             foreach(EffectOnStayDepress effect in StayDepressEffects) {
-                effect.AddDepress();
+                effect.AddDepress(other);
             }
         }
     }
 
     private void OnTriggerExit(Collider other) {
-        Debug.Log("OnTriggerExit");
+        //Debug.Log("OnTriggerExit");
         PlayersOnTile -= 1;
         if (PlayersOnTile == 0) {
             ReleaseAnimateTime = ANIMATION_DURATION;

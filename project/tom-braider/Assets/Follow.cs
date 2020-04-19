@@ -8,7 +8,8 @@ public class Follow : MonoBehaviour
     public GameObject Target;
     private NavMeshAgent NavAgent;
 
-    private bool IsFollowing;
+    [HideInInspector]
+    public bool IsFollowing;
 
     // Start is called before the first frame update
     void Start()
@@ -24,11 +25,13 @@ public class Follow : MonoBehaviour
             IsFollowing = !IsFollowing;
         }
 
-        if (IsFollowing) {
-            NavAgent.SetDestination(Target.transform.position);
-        } else {
-            //Debug.Log(transform.position);
-            NavAgent.SetDestination(transform.position);
+        if (NavAgent.isActiveAndEnabled) {
+            if (IsFollowing) {
+                NavAgent.SetDestination(Target.transform.position);
+            } else {
+                //Debug.Log(transform.position);
+                NavAgent.SetDestination(transform.position);
+            }
         }
     }
 }
