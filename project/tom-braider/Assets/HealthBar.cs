@@ -16,9 +16,11 @@ public class HealthBar : MonoBehaviour
     {
         HealthImage = transform.Find("Health").GetComponent<Image>();
         HealthSlider = GetComponent<Slider>();
+        SetHealth(1f);
     }
 
     public void SetHealth(float t) {
+        Debug.Log("Setting health " + t);
         HealthSlider.value = t;
         SetColor(t);
     }

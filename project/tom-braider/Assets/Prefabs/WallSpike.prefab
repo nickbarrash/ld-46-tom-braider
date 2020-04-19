@@ -174,8 +174,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc7e0bc72d243da4a89cb8fe87793ec2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DamageInterval: 0.2
-  Damage: 1
+  DamageInterval: 0.1
+  Damage: 0.2
   DamageType: Spike
 --- !u!1 &3213737236478525489
 GameObject:
@@ -283,8 +283,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc7e0bc72d243da4a89cb8fe87793ec2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DamageInterval: 0.2
-  Damage: 1
+  DamageInterval: 0.1
+  Damage: 0.2
   DamageType: Spike
 --- !u!1 &3213737236600867806
 GameObject:
@@ -392,8 +392,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc7e0bc72d243da4a89cb8fe87793ec2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DamageInterval: 0.2
-  Damage: 1
+  DamageInterval: 0.1
+  Damage: 0.2
   DamageType: Spike
 --- !u!1 &3213737236743190798
 GameObject:
@@ -501,8 +501,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc7e0bc72d243da4a89cb8fe87793ec2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DamageInterval: 0.2
-  Damage: 1
+  DamageInterval: 0.1
+  Damage: 0.2
   DamageType: Spike
 --- !u!1 &3213737237288707653
 GameObject:
@@ -610,6 +610,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc7e0bc72d243da4a89cb8fe87793ec2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DamageInterval: 0.2
-  Damage: 1
+  DamageInterval: 0.1
+  Damage: 0.2
   DamageType: Spike

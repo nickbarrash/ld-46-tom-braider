@@ -19,21 +19,23 @@ public class SimpleControlMovement : MonoBehaviour
         float MoveDist = 1f * Time.deltaTime * GameConstants.PLAYER_SPEED_MULTIPLE;
 
         if (!IsFrozen) {
+            float x = 0, y = 0, z = 0;
             if (Input.GetKey(KeyCode.W)) {
-                transform.Translate(0f, 0f, MoveDist);
+                z += MoveDist;
             }
 
             if (Input.GetKey(KeyCode.S)) {
-                transform.Translate(0f, 0f, -1f * MoveDist);
+                z -= MoveDist;
             }
 
             if (Input.GetKey(KeyCode.A)) {
-                transform.Translate(-1f * MoveDist, 0f, 0f);
+                x -= MoveDist;
             }
 
             if (Input.GetKey(KeyCode.D)) {
-                transform.Translate(MoveDist, 0f, 0f);
+                x += MoveDist;
             }
+            transform.Translate(new Vector3(x, y, z).normalized * MoveDist);
         }
     }
 }

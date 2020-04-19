@@ -49,7 +49,6 @@ public class EffectFlipFloor : EffectOnStayDepress {
                 Animating = false;
             }
         }
-
     }
 
     public void LaunchAnimate() {

@@ -4,33 +4,42 @@ using UnityEngine;
 
 public class EffectDamage : MonoBehaviour {
     public float DamageInterval = 0.2f;
-    public float Damage = 1f;
+    public float Damage = 0.2f;
     public string DamageType;
 
-    private float DamageTime;
+    Dictionary<string, float> CharacterTickTimes = new Dictionary<string, float>();
 
     private void Start() {
         ResetDamageTimer();
     }
 
     public void ResetDamageTimer() {
-        DamageTime = 0f;
+        CharacterTickTimes.Clear();
     }
 
     private void OnTriggerStay(Collider other) {
-        if (GameConstants.IsCharacterLayer(other.gameObject.layer)) {
-            DamageTime -= Time.deltaTime;
-            if (DamageTime <= 0) {
-                DamageTime = DamageInterval - DamageTime;
-                Debug.Log(DamageType + " Damage for " + other.gameObject.name);
-            }
-        }
+        DamageCharacter(other.gameObject);
     }
 
     private void OnCollisionStay(Collision collision) {
-        //Debug.Log(collision.collider.gameObject.tag + " " + collision.collider.gameObject.name);
-        if (GameConstants.IsCharacterLayer(collision.collider.gameObject.layer)) {
-            Debug.Log(DamageType + " Damage for " + collision.collider.gameObject.name);
+        DamageCharacter(collision.collider.gameObject);
+    }
+
+    private void DamageCharacter(GameObject character) {
+        if (GameConstants.IsCharacterLayer(character.layer)) {
+            float TickTime = 0f;
+            string Name = character.name;
+            if (CharacterTickTimes.ContainsKey(Name)) {
+                TickTime = CharacterTickTimes[Name];
+            }
+
+            TickTime -= Time.deltaTime;
+
+            if (TickTime <= 0) {
+                TickTime = DamageInterval - TickTime;
+                character.GetComponent<CharacterHealth>().Damage(Damage);
+            }
+            CharacterTickTimes[Name] = TickTime;
         }
     }
 }

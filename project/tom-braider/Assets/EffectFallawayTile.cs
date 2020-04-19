@@ -28,7 +28,10 @@ public class EffectFallawayTile : EffectOnStayDepress {
             FallTile.TriggeredColor = Color.red;
             FallTile.SetTileColor(Color.red);
             DropFloor.TriggerEffect();
-            other.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+            Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
+            if (rb != null) {
+                rb.constraints = RigidbodyConstraints.None;
+            }
 
             NavMeshAgent Agent = other.gameObject.GetComponent<NavMeshAgent>();
             if (Agent != null) {

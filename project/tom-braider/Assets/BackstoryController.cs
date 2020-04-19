@@ -106,7 +106,6 @@ public class BackstoryController : MonoBehaviour {
     }
 
     public void PlayGame() {
-        //manager.SwitchToPanel(2);
         SceneManager.LoadScene("GameScene");
     }
 }
