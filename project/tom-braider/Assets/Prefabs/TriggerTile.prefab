@@ -184,7 +184,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28de4b2b0af01604ab953d36a1584a63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartColor: 0
+  DepressEffects: []
+  StayDepressEffects: []
+  StatefulColor: 0
+  UntouchedColor: {r: 1, g: 1, b: 1, a: 1}
+  TriggeredColor: {r: 1, g: 1, b: 1, a: 1}
+  DepressedColor: {r: 1, g: 1, b: 1, a: 1}
+  UnpressedColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &8792065867532099456
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,7 +217,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8792065867532099456}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -0.0001, z: 0}
+  m_LocalPosition: {x: 0, y: -0.001, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7429334627765712371}
