@@ -9,7 +9,10 @@ public class EffectDamage : MonoBehaviour {
 
     Dictionary<string, float> CharacterTickTimes = new Dictionary<string, float>();
 
+    PersistentSettings settings;
+
     private void Start() {
+        settings = FindObjectOfType<PersistentSettings>();
         ResetDamageTimer();
     }
 
@@ -37,7 +40,10 @@ public class EffectDamage : MonoBehaviour {
 
             if (TickTime <= 0) {
                 TickTime = DamageInterval - TickTime;
-                character.GetComponent<CharacterHealth>().Damage(Damage);
+
+                float damage = settings.HardMode ? 99 : Damage;
+
+                character.GetComponent<CharacterHealth>().Damage(damage);
             }
             CharacterTickTimes[Name] = TickTime;
         }

@@ -20,19 +20,19 @@ public class SimpleControlMovement : MonoBehaviour
 
         if (!IsFrozen) {
             float x = 0, y = 0, z = 0;
-            if (Input.GetKey(KeyCode.W)) {
+            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) {
                 z += MoveDist;
             }
 
-            if (Input.GetKey(KeyCode.S)) {
+            if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) {
                 z -= MoveDist;
             }
 
-            if (Input.GetKey(KeyCode.A)) {
+            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) {
                 x -= MoveDist;
             }
 
-            if (Input.GetKey(KeyCode.D)) {
+            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) {
                 x += MoveDist;
             }
             transform.Translate(new Vector3(x, y, z).normalized * MoveDist);

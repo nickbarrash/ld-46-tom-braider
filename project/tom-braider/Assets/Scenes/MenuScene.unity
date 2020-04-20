@@ -1238,8 +1238,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Today you must help your clients recover the fabled Golden Sphere from
-    the mysterious undergound temple "Site 209"
+  m_text: You must guide and protect your clients while they recover the fabled Golden
+    Sphere from the mysterious undergound temple "Site 209"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1308,10 +1308,10 @@ MonoBehaviour:
   m_margin: {x: -205.58365, y: -215.25903, z: -233.39691, w: -184.02422}
   m_textInfo:
     textComponent: {fileID: 1338332154}
-    characterCount: 114
+    characterCount: 132
     spriteCount: 0
-    spaceCount: 17
-    wordCount: 18
+    spaceCount: 20
+    wordCount: 21
     linkCount: 0
     lineCount: 3
     pageCount: 1

@@ -23,8 +23,6 @@ public class WallSpikeCoordinator : MonoBehaviour
         for(int index = 0; index < Spikes.Count; index++) {
             float CycleTime = CycleModulo(index * AnimationOffset, MyTime);
 
-            Debug.Log(CycleTime);
-
             if (CycleTime > RetractDuration) {
                 CycleTime -= RetractDuration;
                 if (CycleTime > RetractPauseDuration) {
@@ -32,25 +30,20 @@ public class WallSpikeCoordinator : MonoBehaviour
                     if (CycleTime > ExtrudeDuration) {
                         CycleTime -= ExtrudeDuration;
                         if (CycleTime > ExtractPauseDuration) {
-                            Debug.Log("Warn shouldn't get here");
                         } else {
-                            Debug.Log("Retracted Pause");
                             // Retracted Pause
                             Spikes[index].SetSpikeFromT(1);
                         }
                     } else {
                         // Retract
-                        Debug.Log("Retract");
                         Spikes[index].SetSpikeFromT(RetractT(CycleTime));
                     }
                 } else {
                     // Extruded Pause
-                    Debug.Log("Extruded Pause");
                     Spikes[index].SetSpikeFromT(0);
                 }
             } else {
                 // Extrude
-                Debug.Log("Extrude");
                 Spikes[index].SetSpikeFromT(ExtrudeT(CycleTime));
             }
         }

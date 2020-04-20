@@ -20,7 +20,6 @@ public class HealthBar : MonoBehaviour
     }
 
     public void SetHealth(float t) {
-        Debug.Log("Setting health " + t);
         HealthSlider.value = t;
         SetColor(t);
     }

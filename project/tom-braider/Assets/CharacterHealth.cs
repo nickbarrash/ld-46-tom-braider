@@ -14,7 +14,6 @@ public class CharacterHealth : MonoBehaviour
     }
 
     public void Damage(float Damage) {
-        Debug.Log(Damage + " // " + Health);
         Health -= Damage;
         HealthAffordance.SetHealth(Health);
 
